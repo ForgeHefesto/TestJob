@@ -1,9 +1,15 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import styled from 'styled-components'
+import { Heading } from '../components/Heading'
+import Dashboard from '../../templates/Dashboard'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 export default function Home() {
   return (
-    <h1>oi</h1>
+    <div>
+      <Heading>JobTest</Heading>
+      <Dashboard />
+    </div>
   )
 }
