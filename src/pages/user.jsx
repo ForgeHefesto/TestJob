@@ -1,22 +1,16 @@
 import Dashboard from '../templates/Dashboard'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import useSWR from 'swr'
 import Head from 'next/head';
 import { Heading } from '../components/Heading'
 import { Button, Spinner } from 'react-bootstrap';
 
+const fetcher = (url) => fetch(url).then((res) => res.json())
 
-const fetcher = async (url) => {
-  const res = await fetch(url)
-  const data = await res.json()
+export default function Users() {
+  const { data, error } = useSWR('https://jsonplaceholder.typicode.com/users', fetcher)
 
-  if (res.status !== 200) {
-    throw new Error(data.message)
-  }
-  return data
-}
-
-export default function Index() {
-  const { data, error } = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher)
+  if (error) return <div>Failed to load</div>
 
   if (!data)
   return (
@@ -41,6 +35,6 @@ export default function Index() {
   );
 
   return (
-      <Dashboard children={data} type={true} url="posts" model="table"></Dashboard>
+      <Dashboard children={data} type={true} url="users" model="table"></Dashboard>
   )
 }

@@ -1,7 +1,8 @@
-import Dashboard from '../templates/Dashboard'
-import useSWR from 'swr'
+import useSWR from "swr"
+import { useRouter } from 'next/router'
+import Dashboard from "../../templates/Dashboard"
 import Head from 'next/head';
-import { Heading } from '../components/Heading'
+import { Heading } from '../../components/Heading';
 import { Button, Spinner } from 'react-bootstrap';
 
 
@@ -15,8 +16,14 @@ const fetcher = async (url) => {
   return data
 }
 
-export default function Index() {
-  const { data, error } = useSWR('https://jsonplaceholder.typicode.com/posts', fetcher)
+
+
+export default function Posts() {
+  const { query } = useRouter()
+  console.log(query.id)
+  const { data, error } = useSWR(`https://jsonplaceholder.typicode.com/posts/${query.id}/comments`,
+    fetcher
+  )
 
   if (!data)
   return (
@@ -41,6 +48,8 @@ export default function Index() {
   );
 
   return (
-      <Dashboard children={data} type={true} url="posts" model="table"></Dashboard>
-  )
+    <Dashboard children={data} type={false} model="table"></Dashboard>
+    )
 }
+
+

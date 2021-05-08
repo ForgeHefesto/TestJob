@@ -1,11 +1,39 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components';
 
-export const Title = styled.h3`
-  color: #ffffff
+export const Title = styled.h1`
+  color: #ffffff;
 `
-export const Text = styled.p`
-  color: #ffffff
-`
+export const Text = styled.a`
+  ${({ theme }) => css`
+    display: block;
+    text-decoration: none;
+    font-size: ${theme.font.sizes.small};
+    padding: ${theme.spacings.small};
+    color: #ffffff;
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0.76rem;
+      left: 50%;
+      width: 0;
+      height: 0.2rem;
+      background: ${theme.colors.secondaryColor};
+      transition: all 300ms ease-in-out;
+    }
+
+    &:hover::after {
+      color: #ffffff;
+      left: 25%;
+      width: 50%;
+    }
+    &:hover{
+      color: #ffffff;
+    }
+  `}
+`;
 
 export const Navbar = styled.div`
     position: relative;
@@ -18,6 +46,7 @@ export const Navbar = styled.div`
 `
 export const NavBody = styled.div`
   flex: auto;
-  padding-top: 20px;
+  display: flex;
+  padding-top: 10px;
   margin-left: 10px;
-`
+  `
