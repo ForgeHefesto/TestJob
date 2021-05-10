@@ -28,9 +28,6 @@ export default function Posts() {
   if (!data)
   return (
     <div>
-      <Head>
-        <title>JobTest-comments</title>
-      </Head>
       <Heading>JobTest</Heading>
       <div className="container">
         <Button variant="dark" disabled>
@@ -48,7 +45,10 @@ export default function Posts() {
   );
 
   return (
-    <Dashboard children={data} type={false} model="table"></Dashboard>
+    <div>
+      <Heading>JobTest</Heading>
+      <Dashboard children={data} type={false}></Dashboard>
+    </div>
     )
 }
 

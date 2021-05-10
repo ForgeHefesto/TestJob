@@ -15,9 +15,6 @@ export default function Users() {
   if (!data)
   return (
     <div>
-      <Head>
-        <title>JobTest-comments</title>
-      </Head>
       <Heading>JobTest</Heading>
       <div className="container">
         <Button variant="dark" disabled>
@@ -35,6 +32,9 @@ export default function Users() {
   );
 
   return (
-      <Dashboard children={data} type={true} url="users" model="table"></Dashboard>
+    <div>
+      <Heading>JobTest</Heading>
+      <Dashboard children={data} type={true} url="users"></Dashboard>
+    </div>
   )
 }

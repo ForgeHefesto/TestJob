@@ -1,9 +1,9 @@
 import useSWR from 'swr';
 import { useRouter } from 'next/router';
-import Dashboard from '../../templates/Dashboard';
 import { Button, Spinner } from 'react-bootstrap';
 import Head from 'next/head';
 import { Heading } from '../../components/Heading';
+import FormUser from '../../components/FormUser';
 
 const fetcher = async (url) => {
   const res = await fetch(url);
@@ -25,9 +25,6 @@ export default function Posts() {
   if (!data)
     return (
       <div>
-        <Head>
-          <title>JobTest-comments</title>
-        </Head>
         <Heading>JobTest</Heading>
         <div className="container">
           <Button variant="dark" disabled >
@@ -44,5 +41,13 @@ export default function Posts() {
       </div>
     );
 
-  return <Dashboard children={data} type={false} model="form"></Dashboard>;
+  return (
+    <div>
+      <Head>
+        <title>JobTest-User-form</title>
+      </Head>
+      <Heading>JobTest</Heading>
+      <FormUser children={data}/>
+    </div>
+  );
 }
